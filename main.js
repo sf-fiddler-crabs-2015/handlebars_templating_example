@@ -3,9 +3,21 @@ OUR MISSION: We need to get some squirrels from somewheres, and we need to put t
 */
 
 // Retrieve some squirrels from Reddit
-$.ajax({
-  url: "http://www.reddit.com/r/squirrels.json"
-}).done(function(data) {
-  console.log(data);
-  $('#results').html(JSON.stringify(data));
+function getSquirrels() {
+  // Retrieve Handlebars template from the HTML
+  var source = $('#squirrels-template').html();
+  var template = Handlebars.compile(source);
+  var context = {squirrels: []};
+
+  $.ajax({
+    url: "http://www.reddit.com/r/squirrels.json"
+  }).done(function(data) {
+    context.squirrels = data.data.children;
+    $('#results').html(template(context));
+  });
+}
+
+$(document).ready(function() {
+  getSquirrels();
 });
+
