@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Who run the world? Squirrels.</title>
+  <title>Crablets 4 Lyfe</title>
 
   <!-- jQuery from CDN -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -12,16 +12,23 @@
 
   <script src="main.js"></script>
 
-  <!-- our Handlebars template will go here as a script tag of type 'x-handlebars-template' -->
+  <!-- our Handlebars template will go in a script tag of type "text/x-handlebars-template" -->
+  <script id="fiddler_crabs_template" type="text/x-handlebars-template">
+     {{#each fiddler_crab_stories}}
+      <a href="{{data.url}}"><img src="{{data.thumbnail}}" /></a>
+      Author: {{data.author}}: {{data.title}} ({{data.score}})
+      <hr>
+     {{/each}}
+  </script>
+
 
 </head>
 
 <body>
-  <h1>Squirrel News</h1>
+  <h1>Fiddler Crab News</h1>
   <div id="results">
-    <p>There are no squirrels here.</p>
-    <p>We are squirrel-less.</p>
-    <p>We are bereft of even one iota of squirrel.</p>
+    <p>There are no fiddler crabs here.</p>
+    <p>We are bereft of even one iota of fiddler crab.</p>
     <p>But soon, that will all change. #disrupt</p>
   </div>
 </body>

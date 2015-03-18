@@ -1,9 +1,26 @@
 /*
-OUR MISSION: We need to get some squirrels from somewheres, and we need to put those squirrels on the page!
+OUR MISSION: We need to get some fiddler crabs from somewheres, and we need to put those squirrels on the page!
 */
 
-// write a function that gets some squirrels with an AJAX call
-// when the AJAX call returns, take the squirrels to Uglytown by plopping them into your HTML
-// run the getSquirrels function call when the document is ready
+// retrieve fiddler crabs in a function
+// get HTML template as a string
+// use Handlebars to convert string into templating function
+// set up our context variable to apply to the template
+// aaand go!
 
-// use Handlebars instead to display the squirrels in an awesome way!
+function getFiddlerCrabs() {
+  $.ajax({
+    url: "http://www.reddit.com/r/fiddlercrabs.json",
+  }).success(function (response){
+    console.log(response.data.children[0]);
+    var context = {fiddler_crab_stories: response.data.children};
+    var html = $('#fiddler_crabs_template').html();
+    var templatingFunction = Handlebars.compile(html);
+    $('#results').html(templatingFunction(context));
+  });
+}
+
+$(document).ready(function() {
+  getFiddlerCrabs();
+});
+
